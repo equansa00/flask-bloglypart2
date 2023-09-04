@@ -1,0 +1,5 @@
+{ 
+    "python.analysis.extraPaths": [
+        "/home/edward/Desktop/SchoolDocs/flask-boggle/myenv/lib/python3.8/site-packages"
+    ]    
+}
