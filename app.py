@@ -1,18 +1,18 @@
-"""Blogly application."""
-
-from flask import Flask, render_template, redirect, request, url_for
+from flask import Flask
 from models import db, connect_db, User
 from flask_migrate import Migrate
-from config import Config
 
 app = Flask(__name__)
-app.config.from_object(Config)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:1Chriss1@localhost/blogly'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:1Chriss1@localhost/bloglypart1'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SQLALCHEMY_ECHO'] = True
 
 migrate = Migrate(app, db)
+
 connect_db(app)
+
+from flask import Flask, render_template, redirect, request, url_for
+from models import db, connect_db, User
 
 # ... [rest of the app.py code]
 
@@ -65,12 +65,3 @@ def delete_user(user_id):
     db.session.delete(user)
     db.session.commit()
     return redirect("/users")
-
-@app.cli.command("create-db")
-def create_db_command():
-    """Create tables in the database."""
-    with app.app_context():
-        db.create_all()
-    print("Database initialized!")
-
-
